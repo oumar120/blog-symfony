@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<h1>Ajouter un article</h1>
+{{ form_start(form) }}
+{{ form_row(form.title,{'label':'titre','attr':{'placeholder':'titre de l article'}}) }}
+{{ form_row(form.category) }}
+{{ form_row(form.content,{'label':'contenu','attr':{'placeholder':'contenu de l article'}}) }}
+{{ form_row(form.image,{'label':'image','attr':{'placeholder':'image de l article'}}) }}
+<button class="btn btn-success" type="submit">envoyer</button>
+{{ form_end(form) }}
+{% endblock %}

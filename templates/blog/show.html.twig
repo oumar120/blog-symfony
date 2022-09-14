@@ -1,0 +1,36 @@
+{% extends 'base.html.twig'%}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<h1> {{article.title}} </h1>
+<div>
+    <article>
+    <div class="metada">
+         ecrit le {{article.createdAt| date("y/m/d")}} à {{article.createdAt| date('h:m')}} 
+         dans la categorie {{article.category.title}}
+    </div>
+    <div class="content">
+        <img src="{{article.image}}" alt="">
+        <p> {{article.content| raw}} </p>
+    </div>
+
+    </article>
+</div>
+<hr>
+ <h1>{{article.comments | length}} Commentaires</h1> 
+{% for comment in article.comments %}
+<div class="row">
+    <div class="col-lg-3"> {{comment.author}} </div> <small>{{comment.createdAt| date('y/m/d')}}</small>
+    <div class="col"> {{comment.content| raw}} </div>
+</div>
+{% endfor %}
+{% if app.user %}
+{{form_start(form)}}
+{{form_row(form.author,{'attr':{'placeholder':'Prenom'}})}}
+{{form_row(form.content,{'attr':{'placeholder':'Commentaire'}})}}
+{{form_end(form)}}
+<button class="btn btn-info" type="submit">envoyer</button>
+{% else %}
+<h3>vous devez vous connecter pour laisser un commentaire</h3>
+<a href="{{ path('signin')}}" class="btn btn-success">connexion</a>
+{% endif %}
+{% endblock %}

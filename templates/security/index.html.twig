@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<h1>Connexion!</h1>
+{{ form_start(form) }}
+{{form_row(form.username,{'attr':{'placeholder':'nom d utilisateur'}})}}
+{{form_row(form.email,{'attr':{'placeholder':'email'}})}}
+{{form_row(form.password,{'attr':{'placeholder':'mot de passe'}})}}
+{{form_row(form.confirm_password,{'attr':{'placeholder':'confirmer mot de passe'}})}}
+{{form_row(form.roles,{'attr':{'placeholder':'role de l user'}})}}
+<button class="btn btn-success" type="submit">valider</button>
+{{ form_end(form) }}
+{% endblock %}
